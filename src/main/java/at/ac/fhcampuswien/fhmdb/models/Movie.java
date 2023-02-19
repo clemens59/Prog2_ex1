@@ -24,6 +24,13 @@ public class Movie {
     public static List<Movie> initializeMovies(){
         List<Movie> movies = new ArrayList<>();
         // TODO add some dummy data here
+        Movie star_wars = new Movie ("Star Wars", "Science");
+        Movie midsommer = new Movie("Midsommer", "Scary");
+        Movie shrek = new Movie("Shrek", "Funny");
+
+        movies.add(star_wars);
+        movies.add(midsommer);
+        movies.add(shrek);
 
         return movies;
     }
