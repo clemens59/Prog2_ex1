@@ -12,7 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -52,6 +54,11 @@ public class HomeController implements Initializable {
         // TODO add event handlers to buttons and call the regarding methods
         // either set event handlers in the fxml file (onAction) or add them here
 
+        //search button
+        searchBtn.setOnAction(actionEvent -> {
+            // TODO add button functions markrei
+        });
+
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
             if(sortBtn.getText().equals("Sort (asc)")) {
@@ -64,5 +71,29 @@ public class HomeController implements Initializable {
         });
 
 
+    }
+
+    public List<Movie> filterByGenre(String genre) {
+        List<Movie> movies = new ArrayList<>();
+
+        for (Movie movie : allMovies){
+            if(movie.toString().matches(genre)){
+                movies.add(movie);
+            }
+        }
+        return movies;
+    }
+
+    public List<Movie> filterByText(String text) {
+        List<Movie> movies = new ArrayList<>();
+
+        for (Movie movie : allMovies){
+            if(movie.getTitle().matches(text)){
+                movies.add(movie);
+            } else if (movie.getDescription().matches(text)){
+                movies.add(movie);
+            }
+        }
+        return movies;
     }
 }
