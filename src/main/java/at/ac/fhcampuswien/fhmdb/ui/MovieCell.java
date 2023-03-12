@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.fhmdb.ui;
 
+import at.ac.fhcampuswien.fhmdb.models.GenreList;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -24,7 +25,7 @@ public class MovieCell extends ListCell<Movie> {
         } else {
             this.getStyleClass().add("movie-cell");
             title.setText(movie.getTitle());
-            genre.setText(movie.toString());
+            genre.setText(movie.getGenre());
             detail.setText(
                     movie.getDescription() != null
                             ? movie.getDescription()

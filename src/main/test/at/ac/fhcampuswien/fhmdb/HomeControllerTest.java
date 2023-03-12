@@ -1,6 +1,8 @@
 package at.ac.fhcampuswien.fhmdb;
 
 
+import at.ac.fhcampuswien.fhmdb.models.GenreList;
+import at.ac.fhcampuswien.fhmdb.models.Genres;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +24,10 @@ class HomeControllerTest {
 
         //then
         List<Movie> expected = new ArrayList<>();
-        List<String> starwarsgenre = List.of("SCIENCE FICTION", "ACTION");
+
+        GenreList<Genres> starwarsgenre = new GenreList<>();
+        starwarsgenre.addGenre(Genres.ACTION);
+
         Movie star_wars = new Movie ("Star Wars", "A space opera set “a long time ago in a galaxy far, far away,” the film centres on Luke Skywalker (played by the then relatively unknown Mark Hamill), a young man who finds himself embroiled in an interplanetary war between an authoritarian empire and rebel forces.",starwarsgenre );
         expected.add(star_wars);
 
@@ -55,7 +60,10 @@ class HomeControllerTest {
 
         //then
         List<Movie> expected = new ArrayList<>();
-        List<String> starwarsgenre = List.of("SCIENCE FICTION", "ACTION");
+
+        GenreList<Genres> starwarsgenre = new GenreList<>();
+        starwarsgenre.addGenre(Genres.ACTION);
+
         Movie star_wars = new Movie ("Star Wars", "A space opera set “a long time ago in a galaxy far, far away,” the film centres on Luke Skywalker (played by the then relatively unknown Mark Hamill), a young man who finds himself embroiled in an interplanetary war between an authoritarian empire and rebel forces.",starwarsgenre );
         expected.add(star_wars);
 
