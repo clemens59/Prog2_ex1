@@ -1,7 +1,6 @@
 package at.ac.fhcampuswien.fhmdb.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Movie {
@@ -23,10 +22,11 @@ public class Movie {
 
     public String getDescription() {
         return description;
+
     }
-    
-    public String getGenre() {
-       return this.newGenres.toString();
+
+    public String getStringGenre() {
+       return newGenres.toString();
     }
 
     public static List<Movie> initializeMovies(){
@@ -50,7 +50,6 @@ public class Movie {
         Movie midsommer = new Movie("Midsommer", "Midsommar is a 2019 folk horror film written and directed by Ari Aster. The film stars Florence Pugh and Jack Reynor as a dysfunctional couple who travel to Sweden with a group of friends for a midsummer festival, only to find themselves in the clutches of a sinister cult practicing Scandinavian paganism.",midsommergenre );
         Movie shrek = new Movie("Shrek", "In the film, an embittered ogre named Shrek (Myers) finds his home in the swamp overrun by fairy tale creatures banished by the obsessive ruler Lord Farquaad (Lithgow). With the help of Donkey (Murphy), Shrek makes a pact with Farquaad to rescue Princess Fiona (Diaz) in exchange for regaining control of his swamp.", shrekgenre);
         Movie shrek2 = new Movie("Shrek2", "In the film, an embittered ogre named Shrek (Myers) finds his home in the swamp overrun by fairy tale creatures banished by the obsessive ruler Lord Farquaad (Lithgow). With the help of Donkey (Murphy), Shrek makes a pact with Farquaad to rescue Princess Fiona (Diaz) in exchange for regaining control of his swamp.", shrekgenre2);
-
 
 
         movies.add(star_wars);
