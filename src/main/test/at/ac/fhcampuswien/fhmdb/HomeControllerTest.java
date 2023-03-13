@@ -7,6 +7,7 @@ import at.ac.fhcampuswien.fhmdb.models.Movie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import at.ac.fhcampuswien.fhmdb.testingResources.TestMovie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class HomeControllerTest {
 
     HomeController homeController;
+    TestMovie testMovie;
 
     @BeforeEach
-    void createController(){
+    void createTestingResources(){
         homeController = new HomeController();
+        testMovie = new TestMovie();
     }
 
 
@@ -80,30 +83,33 @@ class HomeControllerTest {
     @Test
     public void testSortMoviesByTitleAscending() {
         // Arrange
-        List<Movie> movies = Movie.initializeMovies();
-
+        List<Movie> sortedMovies = testMovie.getMovies();
 
         // Act
-        List<Movie> sortedMovies = homeController.sortByTitleAscending(movies);
+        homeController.sortByTitleAscending(sortedMovies);
 
         // Assert
-        Assertions.assertEquals("Midsommer", sortedMovies.get(0).getTitle());
-        Assertions.assertEquals("Shrek", sortedMovies.get(1).getTitle());
-        Assertions.assertEquals("Shrek2", sortedMovies.get(2).getTitle());
+        Assertions.assertEquals("A", sortedMovies.get(0).getTitle());
+        Assertions.assertEquals("B", sortedMovies.get(1).getTitle());
+        Assertions.assertEquals("C", sortedMovies.get(2).getTitle());
+        Assertions.assertEquals("D", sortedMovies.get(3).getTitle());
+        Assertions.assertEquals("E", sortedMovies.get(4).getTitle());
     }
 
     @Test
     public void testSortMoviesByTitleDescending() {
         // Arrange
-        List<Movie> movies = Movie.initializeMovies();
+        List<Movie> sortedMovies = testMovie.getMovies();
 
         // Act
-        List<Movie> sortedMovies = homeController.sortByTitleDescending(movies);
+        homeController.sortByTitleDescending(sortedMovies);
 
         // Assert
-        Assertions.assertEquals("Star Wars", sortedMovies.get(0).getTitle());
-        Assertions.assertEquals("Shrek2", sortedMovies.get(1).getTitle());
-        Assertions.assertEquals("Shrek", sortedMovies.get(2).getTitle());
+        Assertions.assertEquals("E", sortedMovies.get(0).getTitle());
+        Assertions.assertEquals("D", sortedMovies.get(1).getTitle());
+        Assertions.assertEquals("C", sortedMovies.get(2).getTitle());
+        Assertions.assertEquals("B", sortedMovies.get(3).getTitle());
+        Assertions.assertEquals("A", sortedMovies.get(4).getTitle());
     }
 
 
