@@ -104,12 +104,12 @@ public class HomeController implements Initializable {
         return movies;
     }
 
-    public static List<Movie> sortByTitleAscending(List<Movie> movies) {
+    public List<Movie> sortByTitleAscending(List<Movie> movies) {
         Collections.sort(movies, (m1, m2) -> m1.getTitle().compareTo(m2.getTitle()));
         return movies;
     }
 
-    public static List<Movie> sortByTitleDescending(List<Movie> movies) {
+    public List<Movie> sortByTitleDescending(List<Movie> movies) {
         Collections.sort(movies, (m1, m2) -> m2.getTitle().compareTo(m1.getTitle()));
         return movies;
     }
