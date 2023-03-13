@@ -1,5 +1,7 @@
 package at.ac.fhcampuswien.fhmdb;
 
+import at.ac.fhcampuswien.fhmdb.models.GenreList;
+import at.ac.fhcampuswien.fhmdb.models.Genres;
 import at.ac.fhcampuswien.fhmdb.models.Movie;
 import at.ac.fhcampuswien.fhmdb.ui.MovieCell;
 import com.jfoenix.controls.JFXButton;
@@ -75,9 +77,14 @@ public class HomeController implements Initializable {
 
     public List<Movie> filterByGenre(String genre) {
         List<Movie> movies = new ArrayList<>();
+        String expected;
+        String actual;
 
         for (Movie movie : allMovies){
-            if(movie.toString().matches(genre)){
+            expected = genre.toString();
+            actual = movie.getGenre();
+
+            if(movie.getGenre().equals(genre)){
                 movies.add(movie);
             }
         }
