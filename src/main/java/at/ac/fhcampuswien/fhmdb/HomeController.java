@@ -54,18 +54,33 @@ public class HomeController implements Initializable {
 
         //search button
         searchBtn.setOnAction(actionEvent -> {
-            // TODO add button functions markrei
-            String searchFieldText = searchField.getText();
-            List<Movie> filteredMovies = observableMovies;
-            if(searchFieldText == "" && (genreComboBox.getPromptText().equals("ALL") || genreComboBox.getPromptText().equals("Filter by Genre"))){
-                observableMovies.addAll(filteredMovies);
-            } else {
+            observableMovies.clear();
+            List<Movie> filteredMovies = allMovies;
 
+            if(searchField.getText().isEmpty() && (genreComboBox.getPromptText().equals("ALL") || genreComboBox.getPromptText().equals("Filter by Genre"))){
+                //filter empty and genres all or not set
+                filteredMovies = allMovies;
+            } else if((!searchField.getText().isEmpty()) && (genreComboBox.getPromptText().equals("ALL") || genreComboBox.getPromptText().equals("Filter by Genre"))){
+                //filter not empty and genres all or not set
+                filteredMovies = filterByText(searchField.getText(), filteredMovies);
+            } else if((!searchField.getText().isEmpty()) && (!genreComboBox.getPromptText().equals("ALL") || !genreComboBox.getPromptText().equals("Filter by Genre"))){
+                //filter not empty and genres set
+                filteredMovies = filterByText(searchField.getText(), filteredMovies);
+                filteredMovies = filterByGenre(genreComboBox.getPromptText(), filteredMovies);
+            } else if((searchField.getText().isEmpty()) && (!genreComboBox.getPromptText().equals("ALL") || !genreComboBox.getPromptText().equals("Filter by Genre"))) {
+                //filter empty and genres set
+                filteredMovies = filterByGenre(genreComboBox.getPromptText(), filteredMovies);
             }
 
-
             observableMovies.addAll(filteredMovies);
+
+            if(sortBtn.getText().equals("Sort (asc)")) {
+                sortByTitleAscending(observableMovies);
+            } else {
+                sortByTitleDescending(observableMovies);
+            }
         });
+
 
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
@@ -82,32 +97,31 @@ public class HomeController implements Initializable {
             }
         });
 
-
     }
 
-    public List<Movie> filterByGenre(String genre) {
-        List<Movie> movies = new ArrayList<>();
+    public List<Movie> filterByGenre(String genre, List<Movie> movies) {
+        List<Movie> filteredMovies = new ArrayList<>();
 
-        for (Movie movie : allMovies){
+        for (Movie movie : movies){
             if(movie.getStringGenre().equals(genre)){
-                movies.add(movie);
+                filteredMovies.add(movie);
             }
         }
-        return movies;
+        return filteredMovies;
     }
 
-    public List<Movie> filterByText(String text) {
-        List<Movie> movies = new ArrayList<>();
+    public List<Movie> filterByText(String text, List<Movie> movies) {
+        List<Movie> filteredMovies = new ArrayList<>();
         text = text.toLowerCase();
 
-        for (Movie movie : allMovies){
+        for (Movie movie : movies){
             if(movie.getTitle().toLowerCase().contains(text)){
-                movies.add(movie);
+                filteredMovies.add(movie);
             } else if (movie.getDescription().toLowerCase().contains(text)){
-                movies.add(movie);
+                filteredMovies.add(movie);
             }
         }
-        return movies;
+        return filteredMovies;
     }
 
     public List<Movie> sortByTitleAscending(List<Movie> movies) {
