@@ -104,7 +104,7 @@ class HomeControllerTest {
 
 
     @Test
-    public void testSortMoviesByTitleAscending() {
+    public void test_sort_movies_by_title_ascending() {
         // Arrange
         List<Movie> sortedMovies = testMovie.getMovies();
 
@@ -120,7 +120,7 @@ class HomeControllerTest {
     }
 
     @Test
-    public void testSortMoviesByTitleDescending() {
+    public void test_sort_movies_by_title_descending() {
         // Arrange
         List<Movie> sortedMovies = testMovie.getMovies();
 
