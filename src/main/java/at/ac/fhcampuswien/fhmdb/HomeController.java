@@ -55,6 +55,16 @@ public class HomeController implements Initializable {
         //search button
         searchBtn.setOnAction(actionEvent -> {
             // TODO add button functions markrei
+            String searchFieldText = searchField.getText();
+            List<Movie> filteredMovies = observableMovies;
+            if(searchFieldText == "" && (genreComboBox.getPromptText().equals("ALL") || genreComboBox.getPromptText().equals("Filter by Genre"))){
+                observableMovies.addAll(filteredMovies);
+            } else {
+
+            }
+
+
+            observableMovies.addAll(filteredMovies);
         });
 
         // Sort button example:
@@ -77,14 +87,9 @@ public class HomeController implements Initializable {
 
     public List<Movie> filterByGenre(String genre) {
         List<Movie> movies = new ArrayList<>();
-        String expected;
-        String actual;
 
         for (Movie movie : allMovies){
-            expected = genre.toString();
-            actual = movie.getGenre();
-
-            if(movie.getGenre().equals(genre)){
+            if(movie.getStringGenre().equals(genre)){
                 movies.add(movie);
             }
         }
@@ -93,11 +98,12 @@ public class HomeController implements Initializable {
 
     public List<Movie> filterByText(String text) {
         List<Movie> movies = new ArrayList<>();
+        text = text.toLowerCase();
 
         for (Movie movie : allMovies){
-            if(movie.getTitle().matches(text)){
+            if(movie.getTitle().toLowerCase().contains(text)){
                 movies.add(movie);
-            } else if (movie.getDescription().matches(text)){
+            } else if (movie.getDescription().toLowerCase().contains(text)){
                 movies.add(movie);
             }
         }

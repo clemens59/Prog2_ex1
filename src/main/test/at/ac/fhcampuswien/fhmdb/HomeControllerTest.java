@@ -20,7 +20,7 @@ class HomeControllerTest {
     TestMovie testMovie;
 
     @BeforeEach
-    void createTestingResources(){
+    void createController(){
         homeController = new HomeController();
         testMovie = new TestMovie();
     }
@@ -36,16 +36,11 @@ class HomeControllerTest {
         List<Movie> actual = homeController.filterByGenre(genre);
 
         //then
-        List<Movie> expected = new ArrayList<>();
+        String expected = "Star Wars";
 
-        GenreList<Genres> starwarsgenre = new GenreList<>();
-        starwarsgenre.addGenre(Genres.ACTION);
-
-        Movie star_wars = new Movie ("Star Wars", "A space opera set “a long time ago in a galaxy far, far away,” the film centres on Luke Skywalker (played by the then relatively unknown Mark Hamill), a young man who finds himself embroiled in an interplanetary war between an authoritarian empire and rebel forces.",starwarsgenre );
-        expected.add(star_wars);
-
-        assertEquals(expected, actual);
+        assertEquals(expected, actual.get(0).getTitle());
     }
+
 
     @Test
     void genre_filter_history_returns_nothing(){
@@ -56,31 +51,57 @@ class HomeControllerTest {
         List<Movie> actual = homeController.filterByGenre(genre);
 
         //then
-        List<Movie> expected = new ArrayList<>();
+        boolean expected = true;
 
-        assertEquals(expected, actual);
+        assertEquals(expected, actual.isEmpty());
     }
+
 
     @Test
     void text_filter_star_returns_star_wars(){
         //give
-        HomeController homeController = new HomeController();
         String text = "star";
 
         //when
         List<Movie> actual = homeController.filterByText(text);
 
         //then
-        List<Movie> expected = new ArrayList<>();
+        String expected = "Star Wars";
 
-        GenreList<Genres> starwarsgenre = new GenreList<>();
-        starwarsgenre.addGenre(Genres.ACTION);
-
-        Movie star_wars = new Movie ("Star Wars", "A space opera set “a long time ago in a galaxy far, far away,” the film centres on Luke Skywalker (played by the then relatively unknown Mark Hamill), a young man who finds himself embroiled in an interplanetary war between an authoritarian empire and rebel forces.",starwarsgenre );
-        expected.add(star_wars);
-
-        assertEquals(expected, actual);
+        assertEquals(expected, actual.get(0).getTitle());
     }
+
+
+    @Test
+    void text_filter_abcde_returns_empty(){
+        //give
+        String text = "abcde";
+
+        //when
+        List<Movie> actual = homeController.filterByText(text);
+
+        //then
+        boolean expected = true;
+
+        assertEquals(expected, actual.isEmpty());
+    }
+
+
+    @Test
+    void text_filter_AbCdE_returns_empty(){
+        //give
+        String text = "AbCdE";
+
+        //when
+        List<Movie> actual = homeController.filterByText(text);
+
+        //then
+        boolean expected = true;
+
+        assertEquals(expected, actual.isEmpty());
+    }
+
+
     @Test
     public void testSortMoviesByTitleAscending() {
         // Arrange
