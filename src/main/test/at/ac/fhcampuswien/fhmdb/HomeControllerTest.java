@@ -100,9 +100,9 @@ class HomeControllerTest {
         List<Movie> sortedMovies = homeController.sortByTitleDescending(movies);
 
         // Assert
-        Assertions.assertEquals("C", sortedMovies.get(0).getTitle());
-        Assertions.assertEquals("B", sortedMovies.get(1).getTitle());
-        Assertions.assertEquals("A", sortedMovies.get(2).getTitle());
+        Assertions.assertEquals("Star Wars", sortedMovies.get(0).getTitle());
+        Assertions.assertEquals("Shrek2", sortedMovies.get(1).getTitle());
+        Assertions.assertEquals("Shrek", sortedMovies.get(2).getTitle());
     }
 
 
