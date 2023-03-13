@@ -23,6 +23,7 @@ class HomeControllerTest {
     }
 
 
+
     @Test
     void genre_filter_action_returns_star_wars(){
         //give
@@ -86,9 +87,9 @@ class HomeControllerTest {
         List<Movie> sortedMovies = homeController.sortByTitleAscending(movies);
 
         // Assert
-        Assertions.assertEquals("A", sortedMovies.get(0).getTitle());
-        Assertions.assertEquals("B", sortedMovies.get(1).getTitle());
-        Assertions.assertEquals("C", sortedMovies.get(2).getTitle());
+        Assertions.assertEquals("Midsommer", sortedMovies.get(0).getTitle());
+        Assertions.assertEquals("Shrek", sortedMovies.get(1).getTitle());
+        Assertions.assertEquals("Shrek2", sortedMovies.get(2).getTitle());
     }
 
     @Test
