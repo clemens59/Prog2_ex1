@@ -15,8 +15,6 @@ public class GenreList<T extends Enum<Genres>> {
     public void addGenre(T genre) {
         if (Arrays.asList(Genres.values()).contains(genre)) {
             this.genres.add(genre);
-        } else {
-            throw new IllegalArgumentException("Genre not supported");
         }
     }
     @Override
