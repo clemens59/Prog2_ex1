@@ -61,9 +61,13 @@ public class HomeController implements Initializable {
         sortBtn.setOnAction(actionEvent -> {
             if(sortBtn.getText().equals("Sort (asc)")) {
                 // TODO sort observableMovies ascending
+                sortByTitleAscending(observableMovies);
+
+
                 sortBtn.setText("Sort (desc)");
             } else {
                 // TODO sort observableMovies descending
+                sortByTitleDescending(observableMovies);
                 sortBtn.setText("Sort (asc)");
             }
         });
@@ -99,4 +103,16 @@ public class HomeController implements Initializable {
         }
         return movies;
     }
+
+    public static List<Movie> sortByTitleAscending(List<Movie> movies) {
+        Collections.sort(movies, (m1, m2) -> m1.getTitle().compareTo(m2.getTitle()));
+        return movies;
+    }
+
+    public static List<Movie> sortByTitleDescending(List<Movie> movies) {
+        Collections.sort(movies, (m1, m2) -> m2.getTitle().compareTo(m1.getTitle()));
+        return movies;
+    }
+
+
 }
